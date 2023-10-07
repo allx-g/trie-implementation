@@ -1,5 +1,5 @@
 /**
- * @author Alex Guel
+ * @author Alexander Guel
  */
 import java.util.ArrayList;
 
