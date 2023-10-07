@@ -1,5 +1,8 @@
 /**
- * @author Alex Guel
+ * @author Alexander Guel
+ * 
+ * A list of functions that the Counting Dictionary should be able to perform.
+ * The goal was to take the Trie that was created and then implement the CountingDictionary using it.
  */
 import java.util.ArrayList;
 
