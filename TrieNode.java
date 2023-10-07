@@ -1,3 +1,4 @@
+
 /**
  * @author Alexander Guel
  */
@@ -14,7 +15,16 @@ public class TrieNode {
 		links = new TrieNode[26];
 	}
 
-	//Convert a letter to a number
+/*
+ * The code below was provided by the professor. Our task was:
+ * 	1) to understand the code provided, and
+ * 	2) implement a Trie data structure using the code as a tool to achieve that goal.
+ * 
+ * This was both an exercise in applying theoretical data structure knowledge and also
+ * reading code written by other programmers and working with it.
+ */
+
+	// Convert a letter to a number
 	private int let(char c) {
 		return c - 'a';
 	}
@@ -22,25 +32,31 @@ public class TrieNode {
 	private char firstChar(String key) {
 		return key.charAt(0);
 	}
-	
+
 	private String rest(String key) {
-		return key.substring(1,key.length());
+		return key.substring(1, key.length());
 	}
-	
+
 	private TrieNode linkWordStart(String start) {
 		return links[let(firstChar(start))];
 	}
 
+/*
+* The following code was written by me:
+*/
+	
 	public Word find(String key) {
 		if (key.length() == 0) { // Handle end of word
-			if (wordHere==null)
+			if (wordHere == null)
 				return null;
-			else return wordHere;
+			else
+			return wordHere;
 		}
 		else {
 			if (linkWordStart(key) == null)
-				return null;
-			else return linkWordStart(key).find(rest(key));
+			return null;
+			else
+			return linkWordStart(key).find(rest(key));
 		}
 	}
 
@@ -48,7 +64,8 @@ public class TrieNode {
 		if (key.length() == 0) { // Handle end of word
 			if (wordHere == null)
 				wordHere = new Word(toHere, 1);
-			else wordHere.incrementCount();
+			else
+				wordHere.incrementCount();
 		}
 		else {
 			if (linkWordStart(key) == null) // If no node exists for the current letter, make one
@@ -81,7 +98,7 @@ public class TrieNode {
 				linkWordStart(key).delete(rest(key)); // Move inside next node
 			}
 		}
-		// After deleting the word, delete any remaining references while 
+		// After deleting the word, delete any remaining references while
 		if (key.length() > 0) {
 			if (!linkWordStart(key).anyKids() && wordHere == null) {
 				links[let(firstChar(key))] = null;
@@ -91,7 +108,8 @@ public class TrieNode {
 	}
 
 	public void allKeyValue(ArrayList<Word> v) {
-		for (TrieNode child : links) { // Count up all key values of any existing child nodes
+	// Count up all key values of any existing child nodes
+		for (TrieNode child : links) {
 			if (child != null) {
 				child.allKeyValue(v);
 			}
@@ -106,7 +124,7 @@ public class TrieNode {
 			allKeyValue(v);
 		}
 		else if (linkWordStart(start) != null) {
-				linkWordStart(start).prefixMatch(v, rest(start));
+			linkWordStart(start).prefixMatch(v, rest(start));
 		}
 
 	}
@@ -115,8 +133,7 @@ public class TrieNode {
 		if (start.length() != 0) {
 			if (linkWordStart(start) == null) {
 				this.allKeyValue(v);
-			}
-			else {
+			} else {
 				linkWordStart(start).spellCheck1(v, rest(start));
 			}
 		}
@@ -139,8 +156,7 @@ public class TrieNode {
 		if (errs > 0) {
 			if (key.length() == 0 && wordHere != null) {
 				ws.add(wordHere);
-			}
-			else {
+			} else {
 				if (linkWordStart(key) != null) {
 					linkWordStart(key).spellCheck2(ws, rest(key), errs);
 				}
@@ -151,15 +167,13 @@ public class TrieNode {
 
 	public void print(String string) {
 		if (wordHere != null)
-			System.out.println(string+" "+wordHere);
-		else System.out.println(string+" empty");
-		for (int i =0; i<26; i++) {
-			if (links[i]!=null){
-				links[i].print(string+"-");
+			System.out.println(string + " " + wordHere);
+		else
+			System.out.println(string + " empty");
+		for (int i = 0; i < 26; i++) {
+			if (links[i] != null) {
+				links[i].print(string + "-");
 			}
 		}
 	}
-
-
 }
-
