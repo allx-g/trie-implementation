@@ -15,14 +15,16 @@ public class TrieNode {
 		links = new TrieNode[26];
 	}
 
-/*
- * The code below was provided by the professor. Our task was:
- * 	1) to understand the code provided, and
- * 	2) implement a Trie data structure using the code as a tool to achieve that goal.
- * 
- * This was both an exercise in applying theoretical data structure knowledge and also
- * reading code written by other programmers and working with it.
- */
+	/*
+	 * The code below was provided by the professor. Our task was:
+	 * 1) to understand the code provided, and
+	 * 2) implement a Trie data structure using the code as a tool to
+	 * achieve that goal.
+	 * 
+	 * This was both an exercise in applying theoretical data structure
+	 * knowledge and also
+	 * reading code written by other programmers and working with it.
+	 */
 
 	// Convert a letter to a number
 	private int let(char c) {
@@ -41,22 +43,22 @@ public class TrieNode {
 		return links[let(firstChar(start))];
 	}
 
-/*
-* The following code was written by me:
-*/
-	
+	/*
+	 * The following code was written by me:
+	 */
+
 	public Word find(String key) {
 		if (key.length() == 0) { // Handle end of word
 			if (wordHere == null)
 				return null;
 			else
-			return wordHere;
+				return wordHere;
 		}
 		else {
 			if (linkWordStart(key) == null)
-			return null;
+				return null;
 			else
-			return linkWordStart(key).find(rest(key));
+				return linkWordStart(key).find(rest(key));
 		}
 	}
 
@@ -108,7 +110,7 @@ public class TrieNode {
 	}
 
 	public void allKeyValue(ArrayList<Word> v) {
-	// Count up all key values of any existing child nodes
+		// Count up all key values of any existing child nodes
 		for (TrieNode child : links) {
 			if (child != null) {
 				child.allKeyValue(v);
@@ -133,7 +135,8 @@ public class TrieNode {
 		if (start.length() != 0) {
 			if (linkWordStart(start) == null) {
 				this.allKeyValue(v);
-			} else {
+			}
+			else {
 				linkWordStart(start).spellCheck1(v, rest(start));
 			}
 		}
@@ -146,7 +149,7 @@ public class TrieNode {
 
 	public void gatherSuggestions(ArrayList<Word> ws, String key, int errs) {
 		for (int i = 0; i < 26; i++) {
-			if (i != let(firstChar(key)) && links[i] != null) {
+			if (i != let(firstChar(key)) && links[i] != null && rest(key).length() != 0) {
 				links[i].spellCheck2(ws, rest(key), errs);
 			}
 		}
@@ -156,7 +159,8 @@ public class TrieNode {
 		if (errs > 0) {
 			if (key.length() == 0 && wordHere != null) {
 				ws.add(wordHere);
-			} else {
+			}
+			else if (key.length() > 0) {
 				if (linkWordStart(key) != null) {
 					linkWordStart(key).spellCheck2(ws, rest(key), errs);
 				}
