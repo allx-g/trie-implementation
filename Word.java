@@ -1,5 +1,5 @@
 /**
- * @author Alex Guel
+ * @author Alexander Guel
  */
 public class Word implements Comparable<Word> {
 

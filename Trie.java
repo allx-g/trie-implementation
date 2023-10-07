@@ -1,10 +1,11 @@
 
 /**
  * @author Alexander Guel
- * 
- * A list of functions that the Trie should be able to execute.
- * All of the methods were given, but the task was to first implement
- * the TrieNode class and then make it work with this class.
+ *         A list of functions that the Trie should be able to
+ *         execute.
+ *         All of the methods were given, but the task was to first
+ *         implement
+ *         the TrieNode class and then make it work with this class.
  */
 import java.util.ArrayList;
 
@@ -37,9 +38,9 @@ public class Trie implements CS211CountingDictionaryInterface {
 	}
 
 	/*
-	 * Here, the tasks was to come up with a new method that was not given.
-	 * 
-	 *  Extra interesting method:
+	 * Here, the tasks was to come up with a new method that was not
+	 * given.
+	 * Extra interesting method:
 	 * Reverses a string in the Trie
 	 */
 	public boolean reverse(String key) {
