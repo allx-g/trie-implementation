@@ -15,7 +15,7 @@ javac Main.java
 
 ## Usage
 
-Edit Main.java to try out some of the different funtions of a Counting Dictionary. Some sample lines of code have been inserted to test out, but feel free to try different inputs. When editing the code, be sure to recompile before running again. To run, type this command in the terminal.
+Edit Main.java to try out some of the different functions of a Counting Dictionary. Some sample lines of code have been inserted to test out, but feel free to try different inputs. When editing the code, be sure to recompile before running again. To run, type this command in the terminal.
 
 ```shell
 java Main
